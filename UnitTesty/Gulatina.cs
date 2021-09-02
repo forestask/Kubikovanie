@@ -6,6 +6,21 @@ namespace UnitTesty
     public class Gulatina
     {
         [TestMethod]
+        public void TestBK_24_1()
+        {
+            AssertDiff(Kubikovanie.Gulatina.Drevina.BK, 1, 24, 0.0415, 0.0002);
+        }
+        [TestMethod]
+        public void TestBK_25_1()
+        {
+            AssertDiff(Kubikovanie.Gulatina.Drevina.BK, 1, 25, 0.0452, 0.0001);
+        }
+        [TestMethod]
+        public void TestBK_26_1()
+        {
+            AssertDiff(Kubikovanie.Gulatina.Drevina.BK, 1, 26, 0.0491, 0.0002);
+        }
+        [TestMethod]
         public void TestBK_24_4()
         {
             AssertDiff(Kubikovanie.Gulatina.Drevina.BK, 4, 24, 0.166, 0.0005);
