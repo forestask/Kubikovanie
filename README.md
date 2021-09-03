@@ -1,2 +1,2 @@
-# Kubikovanie
+# Kubíkovanie
 rôzne spôsoby výpočtu objemu dreva
