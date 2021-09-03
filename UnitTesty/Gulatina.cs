@@ -141,11 +141,11 @@ namespace UnitTesty
             AssertDiff(Kubikovanie.Gulatina.Drevina.TK, 4, 26, 0.18, 0.003);
         }
 
-        void AssertDiff(Kubikovanie.Gulatina.Drevina dr, decimal dlzka, int priemer, double expected, double maxDiff = 0.01)
+        static void AssertDiff(Kubikovanie.Gulatina.Drevina dr, decimal dlzka, int priemer, double expected, double diffThreshold = 0.01)
         {
             var result = Kubikovanie.Gulatina.Objem(dr, dlzka, priemer);
             var diff = System.Math.Abs(result - expected);
-            Assert.IsTrue(diff < maxDiff);
+            Assert.IsTrue(diff < diffThreshold);
         }
     }
 }
