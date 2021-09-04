@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Kubikovanie
+namespace ForestaSK.Kubikovanie
 {
     public static class Gulatina
     {
