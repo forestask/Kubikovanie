@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Company>Foresta SK, a.s.</Company>
+    <Authors>Foresta SK, a.s.</Authors>
+    <Description>kubíkovacie funkcie</Description>
+    <RepositoryUrl>https://github.com/forestask/Kubikovanie</RepositoryUrl>
+    <PackageTags>kubíkovanie, kubíkovacie tabuľky, kubíkovacie funkcie</PackageTags>
+    <PackageId>ForestaSK.Kubikovanie</PackageId>
+    <Product>ForestaSK.Kubikovanie</Product>
   </PropertyGroup>
 
 </Project>
