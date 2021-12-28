@@ -4,9 +4,65 @@ namespace ForestaSK.Kubikovanie
 {
     public static class Gulatina
     {
-        public static double Objem(Drevina drevina, decimal dlzka, int priemer)
+        private static double HrubkaKory(Drevina drevina, int priemer)
         {
-            var d = Convert.ToDouble(dlzka);
+            var hornaHranica = HornaHranica(drevina);
+            if (priemer <= hornaHranica)
+            {
+                return HrubkaKoryX(drevina, priemer);
+            }
+            else
+            {
+                // nad hornou hranicou orig. kubikovacich tabuliek vytvorim linearnu funkciu z hrubky kory pre priemer 10cm a [hornaHranica]cm 
+                var hk10 = HrubkaKoryX(drevina, 10);
+                var hkHh = HrubkaKoryX(drevina, hornaHranica);
+
+                var a = (hkHh - hk10) / (hornaHranica - 10);
+                var b = hkHh - a * hornaHranica;
+
+                // a z nej vypocitam hrubky kory pre dany priemer
+                return a * priemer + b;
+            }
+        }
+
+        private static int HornaHranica(Drevina drevina)
+        {
+            int hornaHranica = default;
+
+            switch (drevina)
+            {
+                case Drevina.BK:
+                    hornaHranica = 130;
+                    break;
+                case Drevina.BO:
+                    hornaHranica = 60;
+                    break;
+                case Drevina.BP:
+                    hornaHranica = 100;
+                    break;
+                case Drevina.DB:
+                    hornaHranica = 130;
+                    break;
+                case Drevina.JD:
+                    hornaHranica = 130;
+                    break;
+                case Drevina.SC:
+                    hornaHranica = 100;
+                    break;
+                case Drevina.SM:
+                    hornaHranica = 130;
+                    break;
+                case Drevina.TK:
+                    hornaHranica = 130;
+                    break;
+            }
+
+            return hornaHranica;
+        }
+
+
+        private static double HrubkaKoryX(Drevina drevina, int priemer)
+        {
             double hrubkaKory = default;
 
             switch (drevina)
@@ -36,7 +92,18 @@ namespace ForestaSK.Kubikovanie
                     hrubkaKory = TK(priemer);
                     break;
             }
-            return Math.PI * Math.Pow(priemer - hrubkaKory, 2) / 4 * d / 10000;
+
+            return hrubkaKory;
+        }
+
+        public static double Objem(Drevina drevina, decimal dlzka, int priemer)
+        {
+            if (priemer < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(priemer), "Priemer musí väčší ako 0");
+            }
+            double hrubkaKory = HrubkaKory(drevina, priemer);
+            return Math.PI * Math.Pow(priemer - hrubkaKory, 2) / 4 * Convert.ToDouble(dlzka) / 10000;
         }
 
         static double BK(int priemer)
